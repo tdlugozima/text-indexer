@@ -10,7 +10,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.entry;
 
 public class TextIndexerTest {
-
     @Test
     public void givenWhiteCharsOrUnallowedOnly_shouldReturnEmptyMap() throws Exception {
         String input = "  - $$}";
@@ -37,11 +36,16 @@ public class TextIndexerTest {
                 entry(Character.valueOf('a'), Arrays.asList("ala", "javie", "kota", "ma")),
                 entry(Character.valueOf('d'), Arrays.asList("koduje")),
                 entry(Character.valueOf('e'), Arrays.asList("javie", "koduje")),
+                entry(Character.valueOf('i'), Arrays.asList("javie")),
+                entry(Character.valueOf('j'), Arrays.asList("javie", "koduje")),
+                entry(Character.valueOf('k'), Arrays.asList("koduje", "kot", "kota")),
                 entry(Character.valueOf('l'), Arrays.asList("ala")),
+                entry(Character.valueOf('m'), Arrays.asList("ma")),
                 entry(Character.valueOf('o'), Arrays.asList("koduje", "kot", "kota")),
+                entry(Character.valueOf('t'), Arrays.asList("kot", "kota")),
+                entry(Character.valueOf('u'), Arrays.asList("koduje")),
                 entry(Character.valueOf('w'), Arrays.asList("w")),
                 entry(Character.valueOf('v'), Arrays.asList("javie"))
         );
-
     }
 }
