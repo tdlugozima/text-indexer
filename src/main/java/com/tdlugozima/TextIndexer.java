@@ -4,6 +4,8 @@ import com.tdlugozima.util.StringMapper;
 
 import java.util.*;
 
+import static java.util.stream.Collectors.toSet;
+
 public class TextIndexer {
     private TextIndexer() {
         throw new IllegalStateException("Utility class");
@@ -17,7 +19,7 @@ public class TextIndexer {
 
         Map<Character, List<String>> indexedStructure = new HashMap<>();
         for (String word : allWords) {
-            for (Character character : word.toCharArray()) {
+            for (Character character : setWithoutDuplicatedCharacters(word)) {
                 if (!indexedStructure.containsKey(character)) {
                     createNewEntryForGivenCharacterAndWord(indexedStructure, word, character);
                 } else {
@@ -26,6 +28,10 @@ public class TextIndexer {
             }
         }
         return indexedStructure;
+    }
+
+    private static Set<Character> setWithoutDuplicatedCharacters(String word) {
+        return word.chars().mapToObj(v -> Character.valueOf((char) v)).collect(toSet());
     }
 
     private static void createNewEntryForGivenCharacterAndWord(Map<Character, List<String>> indexedStructure, String word, Character character) {
